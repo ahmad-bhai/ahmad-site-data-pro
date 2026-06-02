@@ -40,6 +40,38 @@ l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
         <label for="flag">FLAG</label>
         <span style="position: relative; display: inline-block; width: 180px; background:#fff;color:black;">
   <span onclick="o.style.display=o.style.display=='inline-block'?'none':'inline-block'" class="s" id="s">
+  var flagList = [
+        ["pk", "Pakistan"], ["in", "India"], ["bd", "Bangladesh"], ["sa", "Saudi Arabia"],
+        ["ae", "United Arab Emirates"], ["tr", "Turkey"], ["lk", "Sri Lanka"], ["au", "Australia"],
+        ["jp", "Japan"], ["np", "Nepal"], ["eg", "Egypt"], ["my", "Malaysia"],
+        ["th", "Thailand"], ["kr", "South Korea"], ["ng", "Nigeria"], ["mx", "Mexico"]
+    ];
+
+    var flagInput = document.getElementById("flagInput");
+    var flagDropdown = document.getElementById("flagDropdown");
+    var flagImg = document.getElementById("flagImg");
+    var flagText = document.getElementById("flagText");
+
+    // Default Flag
+    flagText.innerText = "Pakistan";
+    flagImg.src = `https://flagcdn.com/16x12/pk.png`;
+
+    flagList.forEach(f => {
+        const div = document.createElement("div");
+        div.style.padding = "8px 15px";
+        div.style.display = "flex";
+        div.style.alignItems = "center";
+        div.style.cursor = "pointer";
+        div.innerHTML = `<img src="https://flagcdn.com/16x12/${f[0]}.png" style="margin-right:8px;">${f[1]}`;
+        div.onclick = (e) => {
+            e.stopPropagation();
+            flagImg.src = `https://flagcdn.com/16x12/${f[0]}.png`;
+            flagText.innerText = f[1];
+            window.selectedFlag = f[0];
+            flagDropdown.style.display = "none";
+        };
+        flagDropdown.appendChild(div);
+    });
     <img src="https://flagcdn.com/16x12/pk.png"> Pakistan
             </span>
             <div class="o" id="o">
