@@ -1,16 +1,19 @@
 <html>
 <body>
     <script>
-    (function () {
-    /* ====== UI: PRO DESIGN | LOGIC: MAGIC SCRIPTS ====== */
+// main.js
+(function () {
 
+  /* ====== YOUR FULL CODE START ====== */
+
+  let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
     var dialogs = document.querySelectorAll("dialog");
     if (dialogs.length) {
-        dialogs.forEach(dia => dia.remove())
+      dialogs.forEach(dia => dia.remove())
     }
     var color = "#1c242a";
-    var html = `<div style="font-family: sans-serif;padding:1rem;background:${color};width:${screen.width > 500 ? 100 + "%" : (screen.width - 40) + "px"};border-top: 5px solid #05c55e" class="dia">
-                    <div style="text-align:center"><div style="line-height:50px;font-size:30px;color:#fff; font-weight:900">PRO</div><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+    var html = `<div style="font-family: sans-serif;padding:1rem;background:${color};width:${screen.width>500?100+"%":(screen.width-40)+"px"}; border-top: 5px solid #05c55e" class="dia">
+                    <div style="text-align:center"><div style="line-height:50px;font-size:30px;color:#fff;font-weight:900">PRO</div><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="50pt" height="50pt" viewBox="0 0 180.000000 180.000000"
  preserveAspectRatio="xMidYMid meet" style="display:inline-block;text-align:center">
 
@@ -28,47 +31,180 @@ fill="#fff" stroke="none">
 -24 -2 2 -3 288 -2 635 l3 632 103 -60 c57 -33 105 -60 108 -60 2 0 4 29 4 65
 l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
 </g>
-</svg></div><br>
-<div style="text-align:center">✅ YOUR PAYMENT IS DONE !!! ENJOY PRO VERSION !!! 💚
-        <label for="percent" style="display:inline-block;width:120px;font-weight:600;color:#fff;font-size:12px">PERCENTAGE</label>
-        <input id="percent" type="number" placeholder="percent" value="93" style="display:inline-block;width:100px;border:1px solid #fff;padding:2px" /><br><br>
-    </div>
+</svg>
+</div><br>
+<div style="text-align:center">
+        <label for="flag__d">FLAG</label>
+            <span style="position: relative; display: inline-block; width: 180px; background:#fff;color:black;">
+  <span onclick="o.style.display=o.style.display=='inline-block'?'none':'inline-block'" class="s" id="s">
+    <img src="https://flagcdn.com/16x12/${"PK".toLowerCase()}.png">
+    ${regionNames.of("PK".toUpperCase())}
+  </span>
+  <div class="o" id="o">
+    
+      <div data-code="pk" data-name="Pakistan">
+        <img src="https://flagcdn.com/16x12/pk.png" alt="Pakistan">
+        Pakistan
+      </div>
+    
+      <div data-code="in" data-name="India">
+        <img src="https://flagcdn.com/16x12/in.png" alt="India">
+        India
+      </div>
+    
+      <div data-code="bd" data-name="Bangladesh">
+        <img src="https://flagcdn.com/16x12/bd.png" alt="Bangladesh">
+        Bangladesh
+      </div>
+    
+      <div data-code="sa" data-name="Saudi Arabia">
+        <img src="https://flagcdn.com/16x12/sa.png" alt="Saudi Arabia">
+        Saudi Arabia
+      </div>
+    
+      <div data-code="ae" data-name="United Arab Emirates">
+        <img src="https://flagcdn.com/16x12/ae.png" alt="United Arab Emirates">
+        United Arab Emirates
+      </div>
+    
+      <div data-code="tr" data-name="Turkey">
+        <img src="https://flagcdn.com/16x12/tr.png" alt="Turkey">
+        Turkey
+      </div>
+    
+      <div data-code="lk" data-name="Sri Lanka">
+        <img src="https://flagcdn.com/16x12/lk.png" alt="Sri Lanka">
+        Sri Lanka
+      </div>
+    
+      <div data-code="au" data-name="Australia">
+        <img src="https://flagcdn.com/16x12/au.png" alt="Australia">
+        Australia
+      </div>
+    
+      <div data-code="jp" data-name="Japan">
+        <img src="https://flagcdn.com/16x12/jp.png" alt="Japan">
+        Japan
+      </div>
+    
+      <div data-code="np" data-name="Nepal">
+        <img src="https://flagcdn.com/16x12/np.png" alt="Nepal">
+        Nepal
+      </div>
+    
+      <div data-code="eg" data-name="Egypt">
+        <img src="https://flagcdn.com/16x12/eg.png" alt="Egypt">
+        Egypt
+      </div>
+    
+      <div data-code="my" data-name="Malaysia">
+        <img src="https://flagcdn.com/16x12/my.png" alt="Malaysia">
+        Malaysia
+      </div>
+    
+      <div data-code="th" data-name="Thailand">
+        <img src="https://flagcdn.com/16x12/th.png" alt="Thailand">
+        Thailand
+      </div>
+    
+      <div data-code="kr" data-name="South Korea">
+        <img src="https://flagcdn.com/16x12/kr.png" alt="South Korea">
+        South Korea
+      </div>
+    
+      <div data-code="ng" data-name="Nigeria">
+        <img src="https://flagcdn.com/16x12/ng.png" alt="Nigeria">
+        Nigeria
+      </div>
+    
+      <div data-code="mx" data-name="Mexico">
+        <img src="https://flagcdn.com/16x12/mx.png" alt="Mexico">
+        Mexico
+      </div>
+    
+  </div>
+</span><br>
+        <label for="user__d">USERNAME</label>
+        <input id="user__d" type="text" placeholder="username" value="Ahmad Bhai" /><br>
+        <label for="prof__d">AMOUNT</label>
+        <input id="prof__d" type="text" placeholder="amount" value="2530" /><br>
+        <label for="width__d">LINE</label>
+        <input id="width__d" type="text" placeholder="line width" value="100" /><br>
+        <label for="pos__d">POSITION</label>
+        <input id="pos__d" type="text" placeholder="position" value="43" /><br>
+        <label for="pl__d">PROFIT/LOSS</label>
+        <input id="pl__d" type="text" placeholder="P/L" value="P" /><br><br>
+        <div>
         <div style="text-align: center;">
             <button
-                style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none;cursor:pointer">RUN CODE</button>
+                style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none">RUN CODE</button>
         </div><br>
-        <div style="color:#05c55e;font-size:12px;text-align:left">✅ YOUR PAYMENT IS DONE !!! ENJOY PRO VERSION !!! 💚</div>
+          <div style="color:#05c55e;font-size:12px;text-align:left">Monthly payment is your responsibility,Work honestly, move forward.🥰😘 </div>
         <hr style="border-color:#fff">
         <div style="text-align:center;font-weight:100;color:#fff">Made with <span style="cursor: pointer;color: #fff;-webkit-animation-name: heartbeat;animation-name: heartbeat;-webkit-animation-duration: 1.42857s;animation-duration: 1.42857s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: ease;animation-timing-function: ease;">♥</span> by <a style="color:#fff" href="https://t.me/AhmadTrader3">@AhmadTrader3</a></div>
     </div>`;
 
     var myDialog = document.createElement("dialog");
-    document.body.appendChild(myDialog);
-    myDialog.innerHTML = html;
-    var styleElem = document.head.appendChild(document.createElement("style"));
-    styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}} `;
-    myDialog.showModal();
-    
-    document.querySelector("#percent").blur();
-
-    // Logic: Magic Scripts
-    myDialog.querySelector("button").addEventListener("click", () => {
-        const percent = Number(document.querySelector("#percent").value);
-        myDialog.close();
-        
-        var trades = document.querySelectorAll(".mobile-trade-list .item, .Qsdmi.xpiuY > div > div");
-        trades.forEach(el => {
-            var calc = parseFloat(el.childNodes[4].childNodes[1].textContent.split(" ")[0].replace(",", "")) * (1 + (percent/100));
-            el.childNodes[4].querySelector("div").innerHTML = "+" + calc.toLocaleString("en", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-            }) + " $";
-            el.childNodes[4].querySelector("div").style.color = "#0faf59";
+        document.body.appendChild(myDialog);
+        myDialog.innerHTML = html;
+        var flag = "PK".toLowerCase();
+        myDialog.querySelectorAll(".o div").forEach(el => {
+            el.addEventListener("click", () => {
+                const code = el.getAttribute("data-code");
+                const name = el.getAttribute("data-name");
+                s.innerHTML = `<img src="https://flagcdn.com/16x12/${code}.png">${name}`;
+                o.style.display = 'none';
+                flag = code;
+            });
         });
-    });
+        document.onclick = e => !e.target.closest('#s') && o.style.display != 'none' && (o.style.display = 'none');
+        var styleElem = document.head.appendChild(document.createElement("style"));
+        styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}} 
+        .s {cursor: pointer;display: flex;align-items: center;padding: 5px;width: 180px;position: relative;}.o {display: none;position: absolute;top: 100%;left: 0;width: 180px;overflow-y: scroll;height: 200px;background: #fff;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000;}.o div {padding: 5px;display: flex;align-items: center;cursor: pointer;background: #fff;}.o div:hover {background: #eee;}img {margin-right: 5px;}`;
+        myDialog.showModal();
+        var labels = document.querySelectorAll(".dia label");
+        labels.forEach(l => {
+            l.style = `display:inline-block;width:100px;font-weight:600;color:#fff;font-size:12px`
+        });
+        var inputs = document.querySelectorAll(".dia input");
+        inputs.forEach(i => {
+            i.style = `display:inline-block;width:180px;padding:5px;margin-top:2px;outline:none;border-radius:0`;
+            i.blur();
+        })
 
-    const loader = document.getElementById("my_loader");
-    if (loader) loader.remove();
+    myDialog.querySelector("button").addEventListener("click", () => {
+      myDialog.close();
+      var user = document.querySelector("#user__d").value;
+      var prof = Number(document.querySelector("#prof__d").value).toLocaleString("en", { useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var pos = document.querySelector("#pos__d").value;
+      var width = document.querySelector("#width__d").value;
+      var pl = document.querySelector("#pl__d").value.toLowerCase();
+
+      history.pushState({}, null, "/en/trade");
+
+      document.querySelector("div.---react-features-Sidepanel-LeaderBoard-Position-styles-module__name--xN5cX").innerHTML = `<svg class="flag-${flag}"><use xlink:href="/profile/images/flags.svg#flag-${flag}"></use></svg>${user}`;
+
+      document.querySelector("div.---react-features-Sidepanel-LeaderBoard-Position-styles-module__loading--h38TV > span").style.width = width + "%";
+
+      var pl_text = document.querySelector("div.---react-features-Sidepanel-LeaderBoard-Position-styles-module__money--BwWCZ.---react-features-Sidepanel-LeaderBoard-Position-styles-module__green--LD4pW");
+      if (pl === "p") {
+        pl_text.innerHTML = "$" + prof;
+        pl_text.style.color = "#0faf59";
+      }
+      else if (pl === "l") {
+        pl_text.innerHTML = "-" + prof + "$"
+        pl_text.style.color = "#db4635"
+      }
+
+      document.querySelector("div.---react-features-Sidepanel-LeaderBoard-Position-styles-module__footer--iKtL6").innerHTML=  `<div class="---react-features-Sidepanel-LeaderBoard-Position-styles-module__title--ocuJC">Your position:</div>${pos}`;
+
+    })
+  /* ====== YOUR FULL CODE END ====== */
+
+  // loader remove (optional)
+  const loader = document.getElementById("my_loader");
+  if (loader) loader.remove();
+
 })();
 </script>
 </body></html>
