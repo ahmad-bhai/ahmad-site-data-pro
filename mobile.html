@@ -144,22 +144,37 @@ l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
     </div>`;
         var myDialog = document.createElement("dialog");
         document.body.appendChild(myDialog);
+                // --- FIX SECTION START ---
         myDialog.innerHTML = html;
-        var flag = "PK".toLowerCase();
+        
+        // Define references correctly
+        const s = myDialog.querySelector("#s");
+        const o = myDialog.querySelector("#o");
+        
+        let selectedFlag = "pk";
         myDialog.querySelectorAll(".o div").forEach(el => {
             el.addEventListener("click", () => {
                 const code = el.getAttribute("data-code");
                 const name = el.getAttribute("data-name");
                 s.innerHTML = `<img src="https://flagcdn.com/16x12/${code}.png">${name}`;
                 o.style.display = 'none';
-                flag = code;
+                selectedFlag = code;
+                window.selectedFlag = code; // Global scope ke liye
             });
         });
-        document.onclick = e => !e.target.closest('#s') && o.style.display != 'none' && (o.style.display = 'none');
+
+        // Click outside to close
+        document.onclick = e => {
+            if (!e.target.closest('#s') && o) o.style.display = 'none';
+        };
+
         var styleElem = document.head.appendChild(document.createElement("style"));
         styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}} 
         .s {cursor: pointer;display: flex;align-items: center;padding: 5px;width: 180px;position: relative;}.o {display: none;position: absolute;top: 100%;left: 0;width: 180px;overflow-y: scroll;height: 200px;background: #fff;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000;}.o div {padding: 5px;display: flex;align-items: center;cursor: pointer;background: #fff;}.o div:hover {background: #eee;}img {margin-right: 5px;}`;
+        
         myDialog.showModal();
+        // --- FIX SECTION END ---
+
         var labels = document.querySelectorAll(".dia label");
         labels.forEach(l => {
             l.style = `display:inline-block;width:100px;font-weight:600;color:#fff;font-size:12px`
