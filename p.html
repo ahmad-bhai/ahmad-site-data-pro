@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<head>
+  <title>Pay</title>
+</head>
+<html>
+  <body>
+    <script>
+      var dialogs = document.querySelectorAll("dialog");
+        if (dialogs.length) {
+            dialogs.forEach(dia => dia.remove())
+        }
+    var color = "#1c242a";
+    var balance_str;
+    var icon;
+    if (location.pathname.replaceAll(/\/|en/g, "") == "withdrawal") {
+        icon = document.querySelector("body > div.app__page.page > header > div.header__container > div.header__usermenu.usermenu > div.usermenu__info > div.usermenu__info-levels.js-balance-visible-usermenu > svg > use");
+        balance_str = document.querySelector("body > div.app__page.page > header > div.header__container > div.header__usermenu.usermenu > div.usermenu__info > div.usermenu__info-text > div:nth-child(3)");
+        Withdrawal();
+    }
+    else if (location.pathname.replaceAll(/\/|en/g, "") == "balance") {
+        icon = document.querySelector(".---react-features-Usermenu-styles-module__infoLevels--ePf8T > svg > use");
+        balance_str = document.querySelector(".---react-features-Usermenu-styles-module__infoBalance--pVBHU");
+        var live_name = document.querySelector(".---react-features-Usermenu-styles-module__demo--TmWTp")
+        if (live_name) {
+            if (/Mobi|Android|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                live_name.innerHTML = "live"
+            }
+            else {
+                live_name.innerHTML = "live account"
+            }
+            live_name.style.color = "#0faf59";
+        }
+        Transation();
+    }
+        function Transation() {
+        var date = new Date().toLocaleDateString('en-GB', { month: "2-digit", day: "2-digit", year: "numeric" });
+        var time = new Date().toLocaleTimeString('en-GB').split(" ")[0];
+            var html = `<div style="font-family: sans-serif;padding:1rem;background:${color};width:${screen.width>500?100+"%":(screen.width-40)+"px"};border-top: 5px solid #05c55e" class="dia">
+                    <div style="text-align:center"><div style="line-height:50px;font-size:30px;color:#fff; font-weight:900">PRO</div><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="50pt" height="50pt" viewBox="0 0 180.000000 180.000000"
+ preserveAspectRatio="xMidYMid meet" style="display:inline-block;text-align:center">
+
+<g transform="translate(0.000000,180.000000) scale(0.100000,-0.100000)"
+fill="#fff" stroke="none">
+<path d="M753 1622 l-133 -77 0 -67 0 -67 87 50 c49 28 96 55 105 60 17 9 18
+-23 18 -626 l0 -636 -50 28 -50 28 0 443 0 442 -55 0 -55 0 0 -405 c0 -223 -3
+-405 -7 -405 -5 0 -27 10 -50 22 l-43 23 0 308 0 308 -57 -3 -58 -3 -5 -267
+-5 -267 -40 22 -40 23 0 339 0 339 103 59 102 59 0 64 c0 35 -3 64 -6 64 -4 0
+-78 -41 -165 -92 l-159 -92 0 -401 0 -401 342 -198 c189 -110 348 -199 353
+-199 6 0 164 89 353 199 l342 199 0 400 0 400 -159 93 c-87 50 -161 92 -165
+92 -3 0 -6 -29 -6 -64 l0 -63 103 -60 102 -59 0 -339 0 -340 -42 -23 -43 -23
+0 270 0 271 -60 0 -60 0 0 -307 0 -308 -40 -22 c-21 -13 -41 -23 -44 -23 -4 0
+-6 182 -6 405 l0 405 -60 0 -60 0 0 -443 0 -442 -46 -28 c-26 -15 -48 -26 -50
+-24 -2 2 -3 288 -2 635 l3 632 103 -60 c57 -33 105 -60 108 -60 2 0 4 29 4 65
+l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
+</g>
+</svg></div><br>
+<div style="text-align:center">
+        <label for="bal">SET LIVE BALANCE</label>
+        <input id="bal" type="text" placeholder="set balance" value="7650.23" /><br>
+        <label for="amount">AMOUNT</label>
+        <input id="pay" type="text" placeholder="Amount" value="2500" /><br>
+        <label for="wp">W̲ITHDRAWAL/D̲EPOSIT</label>
+        <input id="wp" type="text" placeholder="W/D" value="W" /><br>
+        <label for="sp">S̲UCCESS/P̲ENDING/C̲ANCEL</label>
+        <input id="sp" type="text" placeholder="S/P/C" value="P" /><br>
+        <label for="bp">BINANCE/USDT</label>
+        <input id="bp" type="text" placeholder="B/U" value="B" /><br>
+        <label for="txid">TXID</label>
+        <input id="txid" type="text" placeholder="id" value="43722336205" /><br>
+        <label for="date">DATE</label>
+        <input id="date" type="text" placeholder="date" value="${date}" /><br>
+        <label for="time">TIME</label>
+        <input id="time" type="text" placeholder="time" value="${time}" /><br><br>
+    </div>
+        <div style="text-align: center;">
+            <button
+                style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none">RUN CODE</button>
+        </div><br>
+        <div style="color:#05c55e;font-size:12px;text-align:left">✅ YOUR PAYMENT IS DONE !!! ENJOY PRO VERSION !!! 💚</div>
+        <hr style="border-color:#fff">
+        <div style="text-align:center;font-weight:100;color:#fff">Made with <span style="cursor: pointer;color: #fff;-webkit-animation-name: heartbeat;animation-name: heartbeat;-webkit-animation-duration: 1.42857s;animation-duration: 1.42857s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: ease;animation-timing-function: ease;">♥</span> by <a style="color:#fff" href="https://t.me/AhmadTrader3">@AhmadTrader3</a></div>
+    </div>`;
+            var myDialog = document.createElement("dialog");
+            document.body.appendChild(myDialog);
+            myDialog.innerHTML = html;
+            var styleElem = document.head.appendChild(document.createElement("style"));
+            styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}}`;
+            myDialog.showModal();
+        var labels = document.querySelectorAll(".dia label");
+        labels.forEach(l => {
+            l.style = `display:inline-block;width:200px;font-weight:600;color:#fff;font-size:12px`
+        });
+        var inputs = document.querySelectorAll(".dia input");
+        inputs.forEach(i => {
+            i.style = `display:inline-block;width:120px;padding:5px;margin-bottom:2px;outline:none;border-radius:0`;
+            i.blur();
+        })
+            myDialog.querySelector("button").addEventListener("click", () => {
+                myDialog.close();
+            var req__type = document.querySelector("#wp").value.trim().toLowerCase();
+            var req__status = document.querySelector("#sp").value.trim().toLowerCase();
+            var method = document.querySelector("#bp").value.trim().toLowerCase();
+            var amount = document.querySelector("#pay").value.trim();
+            var bal = document.querySelector("#bal").value.trim();
+            var id = document.querySelector("#txid").value.trim();
+            var date = document.querySelector("#date").value.trim();
+            var time = document.querySelector("#time").value.trim();
+
+            // Remove any dialogs
+            document.querySelectorAll("dialog").forEach(d => d.remove());
+
+            // Remove QR / simplelive backdrop
+            const backdrop = document.getElementById("dialog-backdrop");
+            if (backdrop) backdrop.remove();
+                        
+                    // REMOVE BANNER
+        const bannerm = document.querySelector("div.---react-features-Banner-styles-module__banner--lcyZD.---react-features-Banner-styles-module__body--ryS8w");
+        if (bannerm) {
+            bannerm.remove()
+        }
+        
+                // REMOVE BANNER
+        const bannerp = document.querySelector("div.---react-features-Banner-styles-module__banner--lcyZD");
+        if (bannerp) {
+            bannerp.remove()
+        }
+
+            amount = parseFloat(amount).toLocaleString("en", { useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            var currency__w;
+            var method__w;
+            method === "b" ? method__w = "Binance Pay" : method === "u" ? method__w = "USDT (TRC-20)" : method === "net" ? method__w = "Net Banking" : "";
+
+            method === "b" ? method__w = "Binance Pay" : (method === "u" && req__type === "w") ? method__w = "USDT" : (method === "u" && req__type === "d") ? method__w = "USDT (BEP-20)" : method === "net" ? method__w = "Net Banking" : "";
+            method === "net" ? currency__w = "Ã¢â€šÂ¹" : currency__w = "$"
+
+            const balance_cur = balance_str.innerText[0];
+            var balance = parseFloat(bal).toLocaleString("en", { useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            balance_str.innerText = balance_cur + balance;
+            var limit__lower;
+            var limit__upper;
+
+            if (balance_cur === "$") {
+                limit__lower = 5000;
+                limit__upper = 10000;
+            }
+            else if (balance_cur === "Ã¢â€šÂ¹") {
+                limit__lower = 5000 * inr__rate;
+                limit__upper = 10000 * inr__rate;
+            }
+
+            if ((bal >= limit__lower) && (bal < limit__upper)) {
+                icon.setAttribute("xlink:href", "/profile/images/spritemap.svg#icon-profile-level-pro");
+
+            }
+
+            else if (bal >= limit__upper) {
+                icon.setAttribute("xlink:href", "/profile/images/spritemap.svg#icon-profile-level-vip");
+            }
+
+            else {
+                icon.setAttribute("xlink:href", "/profile/images/spritemap.svg#icon-profile-level-standart");
+            }
+
+
+            var add__row = `
+<div class="---react-ui-TransactionsScreenItem-styles-module__transaction--iJpIP">
+    <div class="---react-ui-TransactionsScreenItem-styles-module__id--QqK5X">${id}</div>
+    <div class="---react-ui-TransactionsScreenItem-styles-module__date--nKgsu">${date}, ${time}</div>
+    <div class="---react-ui-TransactionsScreenItem-styles-module__status--MPlaR">
+        <div class="---react-ui-TransactionsScreenItem-styles-module__status-block--pxEYH">
+            <div class="---react-ui-TransactionsScreenItem-styles-module__status-icon--cnv6i ---react-ui-TransactionsScreenItem-styles-module__${req__status === "c" ? "danger--YdX2Q" : req__status === "s" ? "success--ZBMVh" : req__status === "p" ? "muted--FGTfS" : ""}">
+                <svg class="icon-${req__status === "s" ? "check-tiny" : req__status === "c" ? "close-tiny" : req__status === "p" ? "pending" : ""}">
+                    <use xlink:href="/profile/images/spritemap.svg#icon-${req__status === "s" ? "check-tiny" : req__status === "c" ? "close-tiny" : req__status === "p" ? "pending" : ""}">
+                    </use>
+                </svg>
+            </div>
+            <span class="---react-ui-TransactionsScreenItem-styles-module__status-text--RB6BR ---react-ui-TransactionsScreenItem-styles-module__${req__status === "s" ? "check-tiny--sfm6I" : req__status === "c" ? "close-tiny--FF3r3" : req__status === "p" ? "pending" : ""}">${req__status === "s" ? "Successed" : ((req__type === "d") && (req__status === "c")) ? "Failed" : req__status === "p" ? "Waiting confirmation" : req__status === "c" ? "Canceled" : ""}
+            </span>
+            ${((req__type === "w") && (req__status === "p")) ? `<a href="https://market-qx.trade/en/withdrawal/reject/40737182015" class="---react-ui-TransactionsScreenItem-styles-module__close--kIFLU">Cancel</a>` : ""}
+        </div>
+        ${((req__type === "w") && (req__status === "p")) ? `
+        <div class="---react-ui-TransactionsScreenItem-styles-module__processed--LyUrN">The withdrawal is currently being processed on the side of the financial operator. Please wait - the funds should be received within 48 hours.
+        </div>` : ""}
+    </div>
+    <div class="---react-ui-TransactionsScreenItem-styles-module__type--sIiD1">${req__type === "w" ? "Payout" : "Deposit"}</div>
+    <div class="---react-ui-TransactionsScreenItem-styles-module__method--jdOny">${method__w}</div>
+    <div class="---react-ui-TransactionsScreenItem-styles-module__amount-col--B8L9k">
+    <b class="---react-ui-TransactionsScreenItem-styles-module__amount--h5o4H ---react-ui-TransactionsScreenItem-styles-module__${req__type === "w" ? "red--lqlCl" : "green--jGuz_"}">${req__type === "w" ? `-${currency__w}${amount.replace(",", "")}` : `+${currency__w}${amount}`}</b>
+    </div>
+</div>`
+            var el = document.querySelector("#root > div > div.page.app__page > main > div > div > div.transactions-list-wrapper > div > div.transactions-list__header");
+            el.insertAdjacentHTML("afterend", add__row);
+        })
+
+        }
+
+        function Withdrawal() {
+			        var date = new Date().toLocaleDateString('en-GB').replaceAll("/", ".");
+        var time = new Date().toLocaleTimeString('en-GB').split(" ")[0];
+            var html = `<div style="font-family: sans-serif;padding:1rem;background:${color};width:${screen.width>500?100+"%":(screen.width-40)+"px"};border-top: 5px solid #05c55e;" class="dia">
+                    <div style="text-align:center"><div style="line-height:50px;font-size:30px;color:#fff; font-weight:900">PRO</div><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="50pt" height="50pt" viewBox="0 0 180.000000 180.000000"
+ preserveAspectRatio="xMidYMid meet" style="display:inline-block;text-align:center">
+
+<g transform="translate(0.000000,180.000000) scale(0.100000,-0.100000)"
+fill="#fff" stroke="none">
+<path d="M753 1622 l-133 -77 0 -67 0 -67 87 50 c49 28 96 55 105 60 17 9 18
+-23 18 -626 l0 -636 -50 28 -50 28 0 443 0 442 -55 0 -55 0 0 -405 c0 -223 -3
+-405 -7 -405 -5 0 -27 10 -50 22 l-43 23 0 308 0 308 -57 -3 -58 -3 -5 -267
+-5 -267 -40 22 -40 23 0 339 0 339 103 59 102 59 0 64 c0 35 -3 64 -6 64 -4 0
+-78 -41 -165 -92 l-159 -92 0 -401 0 -401 342 -198 c189 -110 348 -199 353
+-199 6 0 164 89 353 199 l342 199 0 400 0 400 -159 93 c-87 50 -161 92 -165
+92 -3 0 -6 -29 -6 -64 l0 -63 103 -60 102 -59 0 -339 0 -340 -42 -23 -43 -23
+0 270 0 271 -60 0 -60 0 0 -307 0 -308 -40 -22 c-21 -13 -41 -23 -44 -23 -4 0
+-6 182 -6 405 l0 405 -60 0 -60 0 0 -443 0 -442 -46 -28 c-26 -15 -48 -26 -50
+-24 -2 2 -3 288 -2 635 l3 632 103 -60 c57 -33 105 -60 108 -60 2 0 4 29 4 65
+l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
+</g>
+</svg></div><br>
+<div style="text-align:center">
+        <label for="bal">SET LIVE BALANCE</label>
+        <input id="bal" type="text" placeholder="set balance" value="7650.23" /><br>
+        <label for="amount">AMOUNT</label>
+        <input id="pay" type="text" placeholder="Amount" value="2500" /><br>
+        <label for="wp">W̲ITHDRAWAL/D̲EPOSIT</label>
+        <input id="wp" type="text" placeholder="W/D" value="W" /><br>
+        <label for="sp">S̲UCCESS/P̲ENDING/C̲ANCEL</label>
+        <input id="sp" type="text" placeholder="S/P/C" value="P" /><br>
+        <label for="bp">BINANCE/USDT</label>
+        <input id="bp" type="text" placeholder="B/U" value="B" /><br>
+        <label for="txid">TXID</label>
+        <input id="txid" type="text" placeholder="id" value="40724016205" /><br>
+		<label for="date">DATE</label>
+        <input id="date" type="text" placeholder="date" value="${date}" /><br>
+        <label for="time">TIME</label>
+        <input id="time" type="text" placeholder="time" value="${time}" /><br><br>
+    </div>
+        <div style="text-align: center;">
+            <button
+                style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none">RUN CODE</button>
+        </div><br>
+        <div style="color:#05c55e;font-size:12px;text-align:left">✅ YOUR PAYMENT IS DONE !!! ENJOY PRO VERSION !!! 💚</div>
+        <hr style="border-color:#fff">
+        <div style="text-align:center;font-weight:100;color:#fff">Made with <span style="cursor: pointer;color: #fff;-webkit-animation-name: heartbeat;animation-name: heartbeat;-webkit-animation-duration: 1.42857s;animation-duration: 1.42857s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: ease;animation-timing-function: ease;">♥</span> by <a style="color:#fff" href="https://t.me/AhmadTrader3">@AhmadTrader3</a></div>
+    </div>`;
+
+            var myDialog = document.createElement("dialog");
+            document.body.appendChild(myDialog);
+            myDialog.innerHTML = html;
+            var styleElem = document.head.appendChild(document.createElement("style"));
+            styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}} `;
+            myDialog.showModal();
+        var labels = document.querySelectorAll(".dia label");
+        labels.forEach(l => {
+            l.style = `display:inline-block;width:200px;font-weight:600;color:#fff;font-size:12px`
+        });
+        var inputs = document.querySelectorAll(".dia input");
+        inputs.forEach(i => {
+            i.style = `display:inline-block;width:120px;padding:5px;margin-bottom:2px;outline:none;border-radius:0`;
+            i.blur();
+        })
+            myDialog.querySelector("button").addEventListener("click", () => {
+                myDialog.close();
+
+            var req__type = document.querySelector("#wp").value.trim().toLowerCase();
+            var req__status = document.querySelector("#sp").value.trim().toLowerCase();
+            var method = document.querySelector("#bp").value.trim().toLowerCase();
+            var amount = document.querySelector("#pay").value.trim();
+            var bal = document.querySelector("#bal").value.trim();
+            var id = document.querySelector("#txid").value.trim();
+
+            // Remove any dialogs
+            document.querySelectorAll("dialog").forEach(d => d.remove());
+
+            // Remove QR / simplelive backdrop
+            const backdrop = document.getElementById("dialog-backdrop");
+            if (backdrop) backdrop.remove();
+
+                    // REMOVE BANNER
+        const bannerm = document.querySelector("div.---react-features-Banner-styles-module__banner--lcyZD.---react-features-Banner-styles-module__body--ryS8w");
+        if (bannerm) {
+            bannerm.remove()
+        }
+        
+                // REMOVE BANNER
+        const bannerp = document.querySelector("div.---react-features-Banner-styles-module__banner--lcyZD");
+        if (bannerp) {
+            bannerp.remove()
+        }
+
+            amount = parseFloat(amount).toLocaleString("en", { useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            var currency__w;
+            var method__w;
+
+            method === "b" ? method__w = "Binance Pay" : (method === "u" && req__type === "w") ? method__w = "USDT" : (method === "u" && req__type === "d") ? method__w = "USDT (BEP-20)" : method === "net" ? method__w = "Net Banking" : "";
+            method === "net" ? currency__w = "Ã¢â€šÂ¹" : currency__w = "$"
+
+            var limit__lower;
+            var limit__upper;
+
+            const balance_cur = balance_str.innerText[0];
+
+            var balance = parseFloat(bal).toLocaleString("en", { useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            balance_str.innerText = balance_cur + balance;
+            document.querySelector("#trade-page > div > div.profile__deposit.page__sections > div > div:nth-child(1) > div:nth-child(1) > div > dl > dd:nth-child(2)").innerText = balance + " " + balance_cur;
+            document.querySelector("#trade-page > div > div.profile__deposit.page__sections > div > div:nth-child(1) > div:nth-child(1) > div > dl > dd:nth-child(4)").innerText = balance + " " + balance_cur;
+            document.querySelector("#trade-page > div > div.page__content-header > div:nth-child(2) > div.balance__value").innerText = balance + " " + balance_cur;
+            document.querySelector("#trade-page > div > div.page__content-header > div:nth-child(3) > div.balance__value").innerText = balance + " " + balance_cur;
+
+            if (balance_cur === "$") {
+                limit__lower = 5000;
+                limit__upper = 10000;
+            }
+            else if (balance_cur === "Ã¢â€šÂ¹") {
+                limit__lower = 5000 * inr__rate;
+                limit__upper = 10000 * inr__rate;
+            }
+
+            if ((bal >= limit__lower) && (bal < limit__upper)) {
+                icon.setAttribute("xlink:href", "/profile/images/spritemap.svg#icon-profile-level-pro");
+
+            }
+
+            else if (bal >= limit__upper) {
+                icon.setAttribute("xlink:href", "/profile/images/spritemap.svg#icon-profile-level-vip");
+            }
+
+            else {
+                icon.setAttribute("xlink:href", "/profile/images/spritemap.svg#icon-profile-level-standart");
+            }
+
+            var mid = `<div class="col col--icon-${req__status === "c" ? "danger" : req__status === "s" ? "success" : req__status === "p" ? "muted withdrawal-table__status" : ""}">
+<div class="withdrawal-table__block">
+<div class="icon">
+    <svg class="icon-check-tiny">
+        <use xlink:href="https://market-qx.trade/profile/images/spritemap.svg#icon-${req__status === "s" ? "check-tiny" : req__status === "c" ? "close-tiny" : req__status === "p" ? "pending" : ""}"></use>
+    </svg>
+</div>
+<span style="white-space: nowrap; ">
+${req__status === "s" ? "Successed" : ((req__type === "d") && (req__status === "c")) ? "Failed" : req__status === "p" ? "Waiting confirmation" : req__status === "c" ? "Canceled" : ""}</span>
+</div>
+${((req__type === "w") && (req__status === "p")) ? `<div class="withdrawal-table__container">
+    The withdrawal is currently being processed on the side of the financial operator. Please wait - the funds should be received within 48 hours.</div><a class="transactions-table__button" href="https://market-qx.trade/en/withdrawal/reject/40709743794/">Cancel</a>` : ""}
+            
+</div> `;
+
+
+            var add__row = `
+<div class="row ${req__type === "p" ? "withdrawal-table__status-pending" : ""}">
+    
+    <div class="col col--collapse">
+        <div class="col">${id}</div>
+        <div class="col col--spaced col--mute-md">
+            <span>${date.replaceAll("/", ".")}</span>
+            <span class="text-muted hide-md-down">${time}</span>
+        </div>
+    </div>
+
+${mid}
+    
+    <div class="col col--collapse col--swap col--right">
+        <div class="col col--spaced">
+            <span>${method__w}</span>
+        </div>
+        <div class="col col--right text-${req__type === "w" ? "danger" : "success"}"><b>${req__type === "w" ? `-${amount.replace(",", "")}` : `+${amount}`} ${currency__w}</b>
+        </div>
+    </div>
+
+</div>`;
+
+            var money__box = document.querySelector("#trade-page > div > div.profile__deposit.page__sections > div > div:nth-child(1) > div:nth-child(2) > div > div.withdrawal-table.flex-table");
+
+            money__box.insertAdjacentHTML('afterbegin', add__row);
+
+            var money__box__length = document.querySelectorAll("#trade-page > div > div.profile__deposit.page__sections > div > div:nth-child(1) > div:nth-child(2) > div > div.withdrawal-table.flex-table > *");
+
+            if (money__box__length.length > 3) {
+
+                for (let i = 3; i < money__box__length.length; i++) {
+                    money__box__length[i].remove()
+                }
+            }
+            if ((req__type === "w") && (req__status === "p")) {
+                var form__el = document.querySelector("#trade-page > div > div.profile__deposit.page__sections > div > div:nth-child(1) > div:nth-child(1)").children[1];
+                var new__el = document.createElement("div");
+                new__el.classList = "content-section grow-2of3";
+                new__el.innerHTML = ` <div class="content-section__head">Withdrawal:</div>
+    <div class="alert alert--danger">
+        <div class="alert__icon icon">
+            <svg class="icon-alert">
+                <use xlink:href="https://market-qx.trade/profile/images/spritemap.svg#icon-alert"></use>
+            </svg>
+        </div>
+        <div class="alert__message">
+            <p>
+                Please kindly wait until your current withdrawal is completed. After that you can make another withdrawal request.                                </p>
+        </div>
+    </div>`
+                form__el.parentNode.replaceChild(new__el, form__el)
+            }
+        })
+                            }
+    </script>
+  </body>
+</html>
