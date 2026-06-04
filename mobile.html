@@ -211,8 +211,12 @@ l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
             banner.remove();
         }
 
-        document.querySelector("div._58LeE > div.SfrTV.TmWTp").innerText = "live";
-        document.querySelector("div._58LeE > div.SfrTV.TmWTp").style.color = "#0faf59";
+const live_name = document.querySelector("div._58LeE > div.SfrTV.TmWTp");
+if (live_name) {
+    live_name.innerText = /Mobi|Android|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "live" : "live account";
+    live_name.style.color = "#0faf59";
+}
+
         history.pushState({}, null, "/en/trade");
         document.title = "Live trading | Quotex";
         var carret = document.querySelector("#root > div.app.app--fixed.animate > div.QUbaw.app__page > header > div.lqUUw > div.rymiA > div");
