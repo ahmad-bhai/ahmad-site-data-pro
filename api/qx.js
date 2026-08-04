@@ -101,316 +101,84 @@ else if (targetUrl.includes("demo-trade")) {
 // ─── AHMED PREMIUM LOCK SCREEN (NO-DIALOG OVERLAY FIX) ───────────────────
 function getLockScreenHTML(id) {
     return `<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Scripts - Locked</title>
-    <style>
-        /* 🔥 FIXED OVERLAY: Dialog ko khatam karke pure custom layer banayi */
-        #ahmadLockOverlay {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background: rgba(0, 0, 0, 0.4) !important; /* Soft transparent black */
-            backdrop-filter: blur(5px) !important; /* Exactly 5px blur */
-            -webkit-backdrop-filter: blur(5px) !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            z-index: 2147483647 !important; /* Highest priority screen flow */
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", 'Inter', sans-serif;
-            box-sizing: border-box;
-        }
-
-        /* Main Modal Container - Fully Transparent & Borderless */
-        .glass {
-            width: 420px;
-            max-width: 92vw;
-            padding: 28px 24px 26px;
-            
-            /* 30% Round / 70% Square Premium iPhone Corner Style */
-            border-radius: 12px;
-            
-            /* Removed solid gradient background, borders, and heavy drop shadows */
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            
-            color: #ffffff;
-            text-align: center;
-            position: relative;
-            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth iOS pop animation */
-            -webkit-font-smoothing: antialiased;
-            box-sizing: border-box;
-        }
-
-        @keyframes popIn {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Info Box - Sleek Floating Glass Item */
-        .info {
-            margin: 2rem 0;
-            background: rgba(255, 255, 255, 0.07); /* Smooth transparent white backing */
-            border: 1px solid rgba(255, 255, 255, 0.12); /* Ultra thin clean line */
-            border-radius: 10px; /* Matching corner structure */
-            padding: 12px 14px;
-            text-align: left;
-            backdrop-filter: blur(2px);
-        }
-
-        .label {
-            font-size: 0.7rem;
-            letter-spacing: 0.5px;
-            opacity: 0.6;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: #D0BDF4; /* Subtle premium purple tone for labels */
-        }
-
-        .value-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .value {
-            font-size: 0.95rem;
-            font-weight: 600;
-            word-break: break-all;
-            color: #ffffff;
-        }
-
-        .copy-btn {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.2s ease;
-            flex-shrink: 0;
-        }
-
-        .copy-btn:hover {
-            opacity: 1;
-        }
-
-        .copy-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: #fff;
-        }
-
-        .copy-btn .tooltip {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(44, 44, 46, 0.9); /* iOS style toast alert tooltip */
-            backdrop-filter: blur(4px);
-            color: #fff;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 10px;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .copy-btn.show-tooltip .tooltip {
-            opacity: 1;
-            transform: translateX(-50%) translateY(-4px);
-        }
-
-        /* Floating Hearts Background */
-        .heart-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .heart-bg::before,
-        .heart-bg::after {
-            content: '💜';
-            position: absolute;
-            font-size: 24px;
-            color: rgba(255, 111, 197, 0.2);
-            animation: floatHearts 7s infinite linear;
-        }
-
-        .heart-bg::before {
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .heart-bg::after {
-            left: 75%;
-            animation-delay: 3.5s;
-        }
-
-        @keyframes floatHearts {
-            0% {
-                transform: translateY(120%) rotate(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-120%) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .lock-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .lock-icon img {
-            width: 90px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-
-        .logo-pulse {
-            animation: pulseLogo 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulseLogo {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.9;
-            }
-            50% {
-                transform: scale(1.06);
-                opacity: 1;
-            }
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Premium Transparent Telegram Button */
-        .telegram-btn {
-            background: linear-gradient(135deg, rgba(34, 158, 217, 0.85), rgba(29, 78, 216, 0.85));
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(34, 158, 217, 0.25);
-            transition: all 0.2s ease;
-            animation: pulse 1.8s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.04);
-                box-shadow: 0 6px 20px rgba(34, 158, 217, 0.35);
-            }
-        }
-
-        /* Sleek Close Cross */
-        .close-cross {
-            position: absolute;
-            top: 12px;
-            right: 18px;
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: #DC8DE6;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            z-index: 10;
-            opacity: 0.8;
-        }
-
-        .close-cross:hover {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-    </style>
+    <title>Not Found</title>
 </head>
 <body>
-<!-- Pure Overlay Container (No Dialog Layout Break) -->
-<div id="ahmadLockOverlay">
-    <div class="glass">
-      <div class="heart-bg"></div>
-      <div class="close-cross">&times;</div>
-      <div class="lock-icon logo-pulse">
-        <img src="https://i.ibb.co/xqXhx24Z/MS.png" alt="Logo" />
-      </div>
-      <div style="font-size:2rem;font-weight:900;color:#fff; text-shadow:0 5px 25px rgba(0,0,0,0.35);letter-spacing:1px;margin-bottom:10px;margin-top: 1rem;">
-        MAGIC SCRIPTS
-      </div>
-      <div style="font-size:1rem;color:#DC8DE6; margin:1rem 0;letter-spacing:1px;">
-        (🔒 LOCKED 🔒)
-      </div>
+<script id="js">
+(function(){
 
-      <div class="info">
-        <div class="label">ID</div>
-        <div class="value-row">
-          <div class="value" id="vid">${uid}</div>
-          <button class="copy-btn" onclick="copyText('${uid}', this)">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16h13a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z" />
-            </svg>
-            <span class="tooltip">Copied ✓</span>
-          </button>
-        </div>
-      </div>
+var dialogs = document.querySelectorAll("dialog");
+if (dialogs.length) {
+    dialogs.forEach(dia => dia.remove());
+}
 
-      <div class="footer-social">
-        <a href="https://t.me/Magic_Scripts" target="_blank" class="telegram-btn">
-          🚀 Telegram @Magic_Scripts
-        </a>
-      </div>
-    </div>
-</div>
-<script>
-  function copyText(text, btn) {
-    if (!navigator.clipboard) return;
-    navigator.clipboard.writeText(text).then(() => {
-      btn.classList.remove('show-tooltip');
-      void btn.offsetWidth; 
-      btn.classList.add('show-tooltip');
-      setTimeout(() => btn.classList.remove('show-tooltip'), 1200);
-    });
-  }
+var color = "#1c242a";
 
-  document.querySelector(".close-cross").addEventListener("click", function () {
-    const overlay = document.getElementById("ahmadLockOverlay");
-    if(overlay) overlay.remove();
-  });
+var html = \`<div style="font-family: sans-serif;padding:1rem;background:\${color};width:\${screen.width>500?100+"%":(screen.width-40)+"px"};border-top: 5px solid #05c55e" class="dia">
+
+<div style="text-align:center">      
+<div style="line-height:50px;font-size:30px;color:#fff; font-weight:900">LOCKED</div>      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"      
+width="50pt" height="50pt" viewBox="0 0 180.000000 180.000000"      
+preserveAspectRatio="xMidYMid meet" style="display:inline-block;text-align:center">
+
+<g transform="translate(0.000000,180.000000) scale(0.100000,-0.100000)"      
+fill="#fff" stroke="none">
+<path d="M753 1622 l-133 -77 0 -67 0 -67 87 50 c49 28 96 55 105 60 17 9 18      
+-23 18 -626 l0 -636 -50 28 -50 28 0 443 0 442 -55 0 -55 0 0 -405 c0 -223 -3      
+-405 -7 -405 -5 0 -27 10 -50 22 l-43 23 0 308 0 308 -57 -3 -58 -3 -5 -267      
+-5 -267 -40 22 -40 23 0 339 0 339 103 59 102 59 0 64 c0 35 -3 64 -6 64 -4 0      
+-78 -41 -165 -92 l-159 -92 0 -401 0 -401 342 -198 c189 -110 348 -199 353      
+-199 6 0 164 89 353 199 l342 199 0 400 0 400 -159 93 c-87 50 -161 92 -165      
+92 -3 0 -6 -29 -6 -64 l0 -63 103 -60 102 -59 0 -339 0 -340 -42 -23 -43 -23      
+0 270 0 271 -60 0 -60 0 0 -307 0 -308 -40 -22 c-21 -13 -41 -23 -44 -23 -4 0      
+-6 182 -6 405 l0 405 -60 0 -60 0 0 -443 0 -442 -46 -28 c-26 -15 -48 -26 -50      
+-24 -2 2 -3 288 -2 635 l3 632 103 -60 c57 -33 105 -60 108 -60 2 0 4 29 4 65      
+l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
+</g>
+</svg>
+
+</div>      <br>      <div style="text-align:center;color:#fff;font-family:monospace" id="id">${id}</div>      <br>      <div style="text-align: center;">      
+<button style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none;cursor:pointer;">      
+CLOSE      
+</button>      
+</div>      <br>      <div style="color:#ff6251;font-size:12px;text-align:center">📝 CONTACT TO UNLOCK !!! 🔓</div>      <hr style="border-color:#fff">      <div style="text-align:center;font-weight:100;color:#fff">      
+Made with <span style="animation: heartbeat 1.4s infinite;">♥</span> by       
+<a style="color:#fff" href="https://t.me/Magic_Scripts" target="_blank">@Magic_Scripts</a>      
+</div>      </div>\`;
+
+var myDialog = document.createElement("dialog");
+document.body.appendChild(myDialog);
+myDialog.innerHTML = html;
+
+var styleElem = document.head.appendChild(document.createElement("style"));
+styleElem.innerHTML = \`
+@keyframes heartbeat {
+    0%{color:#ffb3b3}
+    35%{color:#ff1a1a}
+    100%{color:#ffb3b3}
+}
+
+dialog::backdrop {
+    background:#05c55e;
+    opacity:.25
+}
+
+::selection {
+    background:white;
+    color:\${color}
+}
+\`;
+
+myDialog.showModal();
+
+myDialog.querySelector("button").addEventListener("click", () => {
+    myDialog.close();
+});
+
+})();
 </script>
 </body>
 </html>`;
