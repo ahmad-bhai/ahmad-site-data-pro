@@ -1,25 +1,27 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <title>Leaderboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
 </head>
-<html>
+
 <body>
     <script>
-      
+    // main.js
 (function () {
-  /* ====== UI: PRO DESIGN | LOGIC: MAGIC SCRIPTS LEADERBOARD ====== */
+
+  /* ====== YOUR FULL CODE START ====== */
 
   let regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
-  var dialogs = document.querySelectorAll("dialog");
-  if (dialogs.length) {
-    dialogs.forEach(dia => dia.remove())
-  }
-  
-  var color = "#1c242a";
-  var html = `<div style="font-family: sans-serif;padding:1rem;background:${color};width:${screen.width > 500 ? 100 + "%" : (screen.width - 40) + "px"}; border-top: 5px solid #05c55e" class="dia">
-    <div style="text-align:center">
-        <div style="line-height:50px;font-size:30px;color:#fff;font-weight:900">MAGIC SCRIPTS</div>
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+    var dialogs = document.querySelectorAll("dialog");
+    if (dialogs.length) {
+      dialogs.forEach(dia => dia.remove())
+    }
+    var color = "#1c242a";
+    var html = `<div style="font-family: sans-serif;padding:1rem;background:${color};width:${screen.width>500?100+"%":(screen.width-40)+"px"}; border-top: 5px solid #05c55e" class="dia">
+                    <div style="text-align:center"><div style="line-height:50px;font-size:30px;color:#fff;font-weight:900">MAGIC SCRIPTS</div><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="50pt" height="50pt" viewBox="0 0 180.000000 180.000000"
  preserveAspectRatio="xMidYMid meet" style="display:inline-block;text-align:center">
 
@@ -38,15 +40,17 @@ fill="#fff" stroke="none">
 l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
 </g>
 </svg>
-    </div><br>
-    <div style="text-align:center">
+</div><br>
+<div style="text-align:center">
         <label for="flag__d">FLAG</label>
-        <span style="position: relative; display: inline-block; width: 180px; background:#fff;color:black;">
-            <span onclick="o.style.display=o.style.display=='inline-block'?'none':'inline-block'" class="s" id="s">
-                <img src="https://flagcdn.com/16x12/pk.png"> Pakistan
-            </span>
-            <div class="o" id="o">
-                <div data-code="pk" data-name="Pakistan">
+            <span style="position: relative; display: inline-block; width: 180px; background:#fff;color:black;">
+  <span onclick="o.style.display=o.style.display=='inline-block'?'none':'inline-block'" class="s" id="s">
+    <img src="https://flagcdn.com/16x12/${"PK".toLowerCase()}.png">
+    ${regionNames.of("PK".toUpperCase())}
+  </span>
+  <div class="o" id="o">
+    
+      <div data-code="pk" data-name="Pakistan">
         <img src="https://flagcdn.com/16x12/pk.png" alt="Pakistan">
         Pakistan
       </div>
@@ -125,77 +129,116 @@ l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
         <img src="https://flagcdn.com/16x12/mx.png" alt="Mexico">
         Mexico
       </div>
-            </div>
-        </span><br>
-        <label for="user__d">USERNAME</label><input id="user__d" type="text" value="Magic Scripts" /><br>
-        <label for="prof__d">AMOUNT</label><input id="prof__d" type="text" value="987" /><br>
-        <label for="width__d">LINE</label><input id="width__d" type="text" value="100" /><br>
-        <label for="pos__d">POSITION</label><input id="pos__d" type="text" value="100+" /><br>
-        <label for="pl__d">PROFIT/LOSS</label><input id="pl__d" type="text" value="P" /><br><br>
+  </div>
+</span><br>
+        <label for="user__d">USERNAME</label>
+        <input id="user__d" type="text" placeholder="username" value="MAGIC SCRIPTS" /><br>
+        <label for="prof__d">AMOUNT</label>
+        <input id="prof__d" type="text" placeholder="amount" value="987" /><br>
+        <label for="width__d">LINE</label>
+        <input id="width__d" type="text" placeholder="line width" value="100" /><br>
+        <label for="pos__d">POSITION</label>
+        <input id="pos__d" type="text" placeholder="position" value="100+" /><br>
+        <label for="pl__d">PROFIT/LOSS</label>
+        <input id="pl__d" type="text" placeholder="P/L" value="P" /><br><br>
+        <div>
         <div style="text-align: center;">
-            <button style="padding:10px 20px;background:#05c55e;color:#fff;border:none;cursor:pointer">RUN MAGIC 🪄</button>
+            <button
+                style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none">RUN MAGIC 🪄</button>
+    <div id="user_id_display" style="text-align:center; font-size:12px; font-weight:700; color:#fff; margin-top:10px;">
+    Your ID: <span id="dynamic_id_val" style="color:#fff;">Loading...</span>
+</div>
         </div><br>
-        <div style="color:#05c55e;font-size:12px;text-align:left">✅ YOUR PAYMENT IS DONE !!! ENJOY PRO VERSION !!! 💚</div>
+          <div style="color:#05c55e;font-size:12px;text-align:center">🪄 ENJOY THE PRO VERSION 🪄</div>
         <hr style="border-color:#fff">
-        <div style="text-align:center;font-weight:100;color:#fff">Made with <span style="animation: heartbeat 1.4s infinite;">♥</span> by <a style="color:#fff" href="https://t.me/Magic_Scripts">@Magic_Scripts</a></div>
+        <div style="text-align:center;font-weight:100;color:#fff">Made with <span style="cursor: pointer;color: #fff;-webkit-animation-name: heartbeat;animation-name: heartbeat;-webkit-animation-duration: 1.42857s;animation-duration: 1.42857s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: ease;animation-timing-function: ease;">♥</span> by <a style="color:#fff" href="https://t.me/Magic_Scripts">@Magic_Scripts</a></div>
     </div>`;
 
-  var myDialog = document.createElement("dialog");
-  document.body.appendChild(myDialog);
-  myDialog.innerHTML = html;
-  
-  let selectedFlag = "pk";
-  myDialog.querySelectorAll(".o div").forEach(el => {
-    el.addEventListener("click", () => {
-      const code = el.getAttribute("data-code");
-      const name = el.getAttribute("data-name");
-      myDialog.querySelector("#s").innerHTML = `<img src="https://flagcdn.com/16x12/${code}.png">${name}`;
-      myDialog.querySelector("#o").style.display = 'none';
-      selectedFlag = code;
+    var myDialog = document.createElement("dialog");
+        document.body.appendChild(myDialog);
+        myDialog.innerHTML = html;
+        var flag = "PK".toLowerCase();
+        myDialog.querySelectorAll(".o div").forEach(el => {
+            el.addEventListener("click", () => {
+                const code = el.getAttribute("data-code");
+                const name = el.getAttribute("data-name");
+                s.innerHTML = `<img src="https://flagcdn.com/16x12/${code}.png">${name}`;
+                o.style.display = 'none';
+                flag = code;
+            });
+        });
+       // URL se ?id=... parameter read karne ki logic
+var urlParams = new URLSearchParams(window.location.search);
+var currentId = urlParams.get('id') || "";
+
+// UI mein ID inject karne ki logic
+var idSpan = myDialog.querySelector("#dynamic_id_val");
+if (idSpan) {
+    idSpan.innerText = currentId;
+}
+        document.onclick = e => !e.target.closest('#s') && o.style.display != 'none' && (o.style.display = 'none');
+        var styleElem = document.head.appendChild(document.createElement("style"));
+        styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}} 
+        .s {cursor: pointer;display: flex;align-items: center;padding: 5px;width: 180px;position: relative;}.o {display: none;position: absolute;top: 100%;left: 0;width: 180px;overflow-y: scroll;height: 200px;background: #fff;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000;}.o div {padding: 5px;display: flex;align-items: center;cursor: pointer;background: #fff;}.o div:hover {background: #eee;}img {margin-right: 5px;}`;
+        myDialog.showModal();
+        var labels = document.querySelectorAll(".dia label");
+        labels.forEach(l => {
+            l.style = `display:inline-block;width:100px;font-weight:600;color:#fff;font-size:12px`
+        });
+        var inputs = document.querySelectorAll(".dia input");
+        inputs.forEach(i => {
+            i.style = `display:inline-block;width:180px;padding:5px;margin-top:2px;outline:none;border-radius:0`;
+            i.blur();
+        })
+
+    myDialog.querySelector("button").addEventListener("click", () => {
+      myDialog.close();
+           
+      var user = document.querySelector("#user__d").value;
+      var prof = Number(document.querySelector("#prof__d").value).toLocaleString("en", { 
+        useGrouping: true, 
+        minimumFractionDigits: 2, 
+        maximumFractionDigits: 2 
+      });
+      var pos = document.querySelector("#pos__d").value;
+      var width = document.querySelector("#width__d").value;
+      var pl = document.querySelector("#pl__d").value.toLowerCase();
+
+      // Clear layout overlays if exist
+      const backdrop = document.getElementById("dialog-backdrop");
+      if (backdrop) backdrop.remove();
+
+      history.pushState({}, null, "/en/trade");
+
+      // --- Leaderboard Target Selector Update ---
+      var leader_el = document.querySelector(".app__sidepanel").lastChild.childNodes[1].firstChild;
+
+      // 1. Update Flag & User Name
+      leader_el.childNodes[1].firstChild.innerHTML = `<svg class="flag-${flag}"><use xlink:href="/profile/images/flags.svg#flag-${flag}"></use></svg><p>${user}</p>`;
+
+      // 2. Update Line Width
+      leader_el.childNodes[2].querySelector("span").style.width = width + "%";
+
+      // 3. Update Profit / Loss Text & Color
+      var pl_text = leader_el.childNodes[1].lastChild;
+      if (pl === "p") {
+        pl_text.innerHTML = "$" + prof;
+        pl_text.style.color = "#0faf59";
+      } else if (pl === "l") {
+        pl_text.innerHTML = prof + "$";
+        pl_text.style.color = "#db4635";
+      }
+
+      // 4. Update Position Text
+      leader_el.childNodes[3].childNodes[1].nodeValue = pos;
     });
-  });
+  /* ====== YOUR FULL CODE END ====== */
 
-  document.onclick = e => !e.target.closest('#s') && myDialog.querySelector("#o") && (myDialog.querySelector("#o").style.display = 'none');
-  
-  var styleElem = document.head.appendChild(document.createElement("style"));
-  styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} .s {cursor:pointer;display:flex;align-items:center;padding:5px;width:180px;}.o {display:none;position:absolute;top:100%;left:0;width:180px;height:150px;overflow-y:scroll;background:#fff;z-index:1000;}.o div {padding:5px;display:flex;align-items:center;cursor:pointer;background:#fff;}.o div:hover{background:#eee;}`;
-  
-  myDialog.showModal();
-  myDialog.querySelectorAll("label").forEach(l => l.style = `display:inline-block;width:100px;font-weight:600;color:#fff;font-size:12px`);
-  myDialog.querySelectorAll("input").forEach(i => i.style = `display:inline-block;width:180px;padding:5px;margin-top:2px;border-radius:0`);
+  // loader remove (optional)
+  const loader = document.getElementById("my_loader");
+  if (loader) loader.remove();
 
-  myDialog.querySelector("button").addEventListener("click", () => {
-    myDialog.close();
-    const user = myDialog.querySelector("#user__d").value;
-    const prof = Number(myDialog.querySelector("#prof__d").value).toLocaleString("en", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const pos = myDialog.querySelector("#pos__d").value;
-    const width = myDialog.querySelector("#width__d").value;
-    const pl = myDialog.querySelector("#pl__d").value.toLowerCase();
-
-    history.pushState({}, null, "/en/trade");
-
-    // Leaderboard DOM Selectors
-    const nameEl = document.querySelector("#root > div > aside.GIUEs.app__sidepanel.y29PX.qe_nH > div.FEpc5 > div.MUXvc > div.K9Ykc > div.DTYNe > div.xN5cX");
-    if (nameEl) nameEl.innerHTML = `<svg class="flag-${selectedFlag}"><use xlink:href="/profile/images/flags.svg#flag-${selectedFlag}"></use></svg>${user}`;
-
-    const lineEl = document.querySelector("#root > div > aside.GIUEs.app__sidepanel.y29PX.qe_nH > div.FEpc5 > div.MUXvc > div.K9Ykc > div.h38TV > span");
-    if (lineEl) lineEl.style.width = width + "%";
-
-    const pl_text = document.querySelector(`#root > div > aside.GIUEs.app__sidepanel.y29PX.qe_nH > div.FEpc5 > div.MUXvc > div.K9Ykc > div.DTYNe > div.BwWCZ.LD4pW, #root > div > aside.GIUEs.app__sidepanel.y29PX.qe_nH > div.FEpc5 > div.MUXvc > div.K9Ykc > div.DTYNe > div.BwWCZ.qUPWg`);
-    if (pl_text) {
-        if (pl === "p") {
-            pl_text.innerHTML = "$" + prof;
-            pl_text.style.color = "#0faf59";
-        } else if (pl === "l") {
-            pl_text.innerHTML = "$" + prof + "";
-            pl_text.style.color = "#db4635";
-        }
-    }
-
-    const posEl = document.querySelector("#root > div > aside.GIUEs.app__sidepanel.y29PX.qe_nH > div.FEpc5 > div.MUXvc > div.K9Ykc > div.iKtL6");
-    if (posEl) posEl.innerHTML = `<div class="ocuJC">Your position:</div>${pos}`;
-  });
 })();
-
-</script>
-</body></html>
+    </script>
+</body>
+</html>
