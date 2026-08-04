@@ -5,9 +5,8 @@
 <html>
 <body>
     <script>
-(function () {
+    (function() {
     /* ====== UI: PRO DESIGN | LOGIC: MAGIC SCRIPTS ====== */
-
     var dialogs = document.querySelectorAll("dialog");
     if (dialogs.length) {
         dialogs.forEach(dia => dia.remove())
@@ -40,37 +39,55 @@ l0 64 -92 54 c-51 30 -113 66 -138 80 l-45 26 -132 -77z"/>
         <div style="text-align: center;">
             <button
                 style="padding:10px 20px;background:#05c55e;color:#fff;border:none;box-shadow:none;cursor:pointer">RUN MAGIC 🪄</button>
+    <div id="user_id_display" style="text-align:center; font-size:12px; font-weight:700; color:#fff; margin-top:10px;">
+    Your ID: <span id="dynamic_id_val" style="color:#fff;">Loading...</span>
+</div>
         </div><br>
-        <div style="color:#05c55e;font-size:12px;text-align:left">✅ YOUR PAYMENT IS DONE !!! ENJOY PRO VERSION !!! 💚</div>
+        <div style="color:#05c55e;font-size:12px;text-align:center">🪄 ENJOY THE PRO VERSION 🪄</div>
         <hr style="border-color:#fff">
         <div style="text-align:center;font-weight:100;color:#fff">Made with <span style="cursor: pointer;color: #fff;-webkit-animation-name: heartbeat;animation-name: heartbeat;-webkit-animation-duration: 1.42857s;animation-duration: 1.42857s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: ease;animation-timing-function: ease;">♥</span> by <a style="color:#fff" href="https://t.me/Magic_Scripts">@Magic_Scripts</a></div>
     </div>`;
-
+    
     var myDialog = document.createElement("dialog");
     document.body.appendChild(myDialog);
     myDialog.innerHTML = html;
     var styleElem = document.head.appendChild(document.createElement("style"));
     styleElem.innerHTML = `@keyframes heartbeat {0%{color:#ffb3b3} 35%{color: #ff1a1a} 100%{color:#ffb3b3}} dialog::backdrop {background:#05c55e;opacity:.25} ::selection {background:white;color:${color}} `;
     myDialog.showModal();
+    // URL se ?id=... parameter read karne ki logic
+    var urlParams = new URLSearchParams(window.location.search);
+    var currentId = urlParams.get('id') || "";
+    
+    // UI mein ID inject karne ki logic
+    var idSpan = myDialog.querySelector("#dynamic_id_val");
+    if (idSpan) {
+        idSpan.innerText = currentId;
+    }
     
     document.querySelector("#percent").blur();
-
+    
     // Logic: Magic Scripts
     myDialog.querySelector("button").addEventListener("click", () => {
         const percent = Number(document.querySelector("#percent").value);
         myDialog.close();
         
-        var trades = document.querySelectorAll(".mobile-trade-list .item, .Qsdmi.xpiuY > div > div");
+        var trades = document.querySelectorAll('div[data-index]:not([data-index="0"])');
         trades.forEach(el => {
-            var calc = parseFloat(el.childNodes[4].childNodes[1].textContent.split(" ")[0].replace(",", "")) * (1 + (percent/100));
-            el.childNodes[4].querySelector("div").innerHTML = "+" + calc.toLocaleString("en", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-            }) + " $";
-            el.childNodes[4].querySelector("div").style.color = "#0faf59";
+            var targetNode = el.firstChild && el.firstChild.firstChild && el.firstChild.firstChild.lastChild;
+            if (targetNode && targetNode.childNodes.length > 2) {
+                var rawText = targetNode.childNodes[1].nodeValue.split(" ")[0].replace(",", "");
+                var calc = parseFloat(rawText) * (1 + (percent / 100));
+                
+                targetNode.childNodes[2].innerText = "+" + calc.toLocaleString("en", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                }) + " $";
+                
+                targetNode.childNodes[2].style.color = "#0faf59";
+            }
         });
     });
-
+    
     const loader = document.getElementById("my_loader");
     if (loader) loader.remove();
 })();
